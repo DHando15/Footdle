@@ -2,8 +2,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
-    public void Playgame
+    public void Playgame()
     {
-        SceneManager.LoadSceneAsync("Game")
+        SceneManager.LoadSceneAsync("Game");
     }
 }
