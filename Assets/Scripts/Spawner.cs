@@ -12,7 +12,7 @@ public class GridSpawner : MonoBehaviour
     public float offsetX = 0.94f; // distanța pe X
     public float offsetY = 0.70f; // distanța pe Y (3.75 -> 3.05)
 
-    public Vector2 objectScale = new Vector2(0.05312836f, 0.05450198f);
+    public Vector2 objectScale = new Vector2(0.7079195f, 0.7079195f);
 
     void Start()
     {
