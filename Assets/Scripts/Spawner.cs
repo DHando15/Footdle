@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class GridSpawner : MonoBehaviour
 {
@@ -7,12 +8,12 @@ public class GridSpawner : MonoBehaviour
     public int columns = 5;   // 5 pe linie
     public int rows = 5;      // 5 linii
 
-    public Vector2 startPosition = new Vector2(-1.93f, 3.75f);
+    public Vector2 startPosition = new Vector2(-400, 300);
 
-    public float offsetX = 0.94f; // distanța pe X
-    public float offsetY = 0.70f; // distanța pe Y (3.75 -> 3.05)
+    public float offsetX = 100f; // distanța pe X
+    public float offsetY = 100f; // distanța pe Y (3.75 -> 3.05)
 
-    public Vector2 objectScale = new Vector2(0.7079195f, 0.7079195f);
+    public Vector3 objectScale =  Vector3.one;
 
     void Start()
     {
@@ -24,14 +25,13 @@ public class GridSpawner : MonoBehaviour
         for (int row = 0; row < rows; row++)
         {
             for (int col = 0; col < columns; col++)
-            {
-                Vector3 pos = new Vector3(
+            { 
+                GameObject obj = Instantiate(prefab, transform);
+                //RectTransmform rt = obj.GetComponent<RectTransform>();
+                obj.transform.position = new Vector3(
                     startPosition.x + col * offsetX,
-                    startPosition.y - row * offsetY,
-                    0
-                );
+                    startPosition.y - row * offsetY,0f );
 
-                GameObject obj = Instantiate(prefab, pos, Quaternion.identity);
                 obj.transform.localScale = objectScale;
             }
         }
