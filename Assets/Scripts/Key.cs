@@ -10,6 +10,9 @@ public class KeyScript : MonoBehaviour
     [SerializeField] private Text keyText;
 
     private char key;
+
+    [Header(" Settings ")]
+    [SerializeField] private bool isBackspace;
     
 
     public void SetKey(char key)
@@ -21,5 +24,10 @@ public class KeyScript : MonoBehaviour
     public Button GetButton()
     {
         return GetComponent<Button>();
+    }
+
+    public bool IsBackspace()
+    {
+        return isBackspace;
     }
 }

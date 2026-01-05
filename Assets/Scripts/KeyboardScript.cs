@@ -9,6 +9,7 @@ public class Keyboard : MonoBehaviour
     [Header(" Elements ")]
     [SerializeField] private RectTransform rectTransfor;
     [SerializeField] private KeyScript keyPrefab ;
+    [SerializeField] private KeyScript backspacekeyPrefab;
 
     [Header(" Settings ")]
     [Range(0f, 1f)]
@@ -52,7 +53,7 @@ public class Keyboard : MonoBehaviour
     private void UpdateRectTransform()
     {
         float width = widthPercent * Screen.width * 4;
-        float height = heightPercent * Screen.height * 4;
+        float height = heightPercent * Screen.height * 2;
 
         rectTransfor.sizeDelta = new Vector2(width, height);
 
@@ -72,8 +73,21 @@ public class Keyboard : MonoBehaviour
             {
                 char key = lines[i].keys[j];
 
-                KeyScript keyInstance = Instantiate(keyPrefab, rectTransfor);
-                keyInstance.SetKey(key);
+                if(key == '.')
+                {
+                    KeyScript keyInstance = Instantiate(backspacekeyPrefab, rectTransfor);
+
+                    //keyInstance.GetButton().onClick.AddListener(() => BackspacePressedCallback())
+                    
+                }
+                else
+                {
+                    KeyScript keyInstance = Instantiate(keyPrefab, rectTransfor);
+                    keyInstance.SetKey(key);
+
+                   // keyInstance.GetButton().onClick.AddListener(() => KeyPressedCallback(key))
+                }
+
             }
         }
     }
@@ -91,22 +105,41 @@ public class Keyboard : MonoBehaviour
 
         for (int i = 0; i < lineCount; i++)
         {
+
+            bool containsBackspace = lines[i].keys.Contains(".");
+
             float halfKeyCount = (float)lines[i].keys.Length / 2;
+
+
+            if (containsBackspace)
+                halfKeyCount += .5f;
+
 
             float startX = rectTransfor.position.x - (keyWidth) * halfKeyCount + keyWidth / 2;
 
             float lineY = rectTransfor.position.y + rectTransfor.rect.height / 2 - lineHeight / 2 - i * lineHeight;
 
+
+
+
+
             for (int j = 0; j < lines[i].keys.Length; j++)
             {
+                bool isBackspaceKey = lines[i].keys[j] == '.';
                 float keyX = startX + j * keyWidth;
-
+                if(isBackspaceKey)
+                    keyX += keyWidth;
                 Vector2 keyPosition = new Vector2(keyX, lineY);
 
                 RectTransform keyRectTransform = rectTransfor.GetChild(currentKeyIndex).GetComponent<RectTransform>();
 
                 keyRectTransform.position = keyPosition;
-                keyRectTransform.sizeDelta = new Vector2(keyWidth, keyWidth);
+
+                float thisKeyWidth = keyWidth;
+                if (isBackspaceKey)
+                    thisKeyWidth *= 2;
+
+                keyRectTransform.sizeDelta = new Vector2(thisKeyWidth, keyWidth);
 
 
                 currentKeyIndex++;
@@ -115,6 +148,12 @@ public class Keyboard : MonoBehaviour
         }
 
     }
+
+    //private void BackspacePressedCallback()
+    //{
+
+    //}
+
 }
 
 [System.Serializable]

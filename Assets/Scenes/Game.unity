@@ -954,13 +954,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Keyboard
   rectTransfor: {fileID: 1984273174}
   keyPrefab: {fileID: 5850405204120829098, guid: c1abcaa5b90b46a4585d3ddbada63ca0, type: 3}
+  backspacekeyPrefab: {fileID: 5850405204120829098, guid: 0d8866195c8d5e1408392665f04c7180, type: 3}
   widthPercent: 0.222
-  heightPercent: 0.092
-  bottomOffset: 0.0024
+  heightPercent: 0.169
+  bottomOffset: 0.0028
   lines:
   - keys: QWERTYUIOP
   - keys: ASDFGHJKL
-  - keys: ZXCVBNM
+  - keys: ZXCVBNM.
   keyToLineRatio: 0.4
   keyXSpacing: 0
 --- !u!114 &1984273176
@@ -976,7 +977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
